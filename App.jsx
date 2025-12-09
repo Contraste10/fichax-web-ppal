@@ -6,14 +6,39 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (email) {
-      // Simulación de envío
-      setSubmitted(true);
-      setEmail('');
+    if (!email) return;
+    
+    setIsLoading(true);
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+        setEmail('');
+      } else {
+        setMessage(data.error || 'Hubo un error al procesar tu solicitud.');
+      }
+    } catch (error) {
+      setMessage('Error de conexión. Inténtalo de nuevo.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -103,12 +128,14 @@ const App = () => {
                 />
                 <button
                   type="submit"
-                  className="group inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-lg shadow-indigo-600/30 transition-all"
+                  disabled={isLoading}
+                  className="group inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Notificarme
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  {isLoading ? 'Enviando...' : 'Notificarme'}
+                  {!isLoading && <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </form>
+              {message && <p className="mt-2 text-sm text-red-500">{message}</p>}
             ) : (
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-center text-green-700 animate-fade-in">
                 <CheckCircle className="h-5 w-5 mr-2" />

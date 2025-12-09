@@ -1,50 +1,55 @@
 # Contexto del Proyecto fichaX
 
 ## Descripción del Proyecto
-**fichaX** es una aplicación web moderna orientada a la gestión de recursos humanos y control horario inteligente. Actualmente, el proyecto consiste en una **Landing Page** (página de aterrizaje) diseñada para captar usuarios interesados (lista de espera) y mostrar las características del producto futuro.
+**fichaX** es una aplicación web moderna orientada a la gestión de recursos humanos y control horario inteligente. El proyecto es una Landing Page con una funcionalidad de "Lista de Espera" activa.
 
 ## Estructura Técnica
-El proyecto ha sido configurado como una Single Page Application (SPA) utilizando las siguientes tecnologías:
+*   **Frontend:** React 18 + Vite + Tailwind CSS.
+*   **Backend:** Cloudflare Pages Functions.
+*   **Base de Datos:** Cloudflare D1 (SQLite en el edge).
 
-*   **Framework:** React 18
-*   **Build Tool:** Vite
-*   **Estilos:** Tailwind CSS
-*   **Iconos:** Lucide React
-*   **Lenguaje:** JavaScript (ESModules)
+## Configuración de Base de Datos (Cloudflare D1)
+Para activar la recolección de emails, se utiliza una base de datos D1 llamada `fichax-db`.
 
-## Estado Actual
-El repositorio contiene todo lo necesario para desplegar la landing page estática.
-Se ha realizado una migración de un único archivo `index.js` a una estructura de proyecto Vite estándar para asegurar su correcta compilación y despliegue.
+### Esquema de Datos (`schema.sql`)
+```sql
+CREATE TABLE waitlist (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,
+  ip_address TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-### Cambios Realizados para el Despliegue
-1.  **Estandarización:** Se ha renombrado el archivo original `index.js` a `App.jsx` para seguir las convenciones de React/Vite.
-2.  **Configuración:** Se han creado los archivos de configuración necesarios:
-    *   `package.json`: Gestión de dependencias y scripts.
-    *   `vite.config.js`: Configuración del empaquetador.
-    *   `tailwind.config.js` y `postcss.config.js`: Configuración de estilos.
-3.  **Puntos de Entrada:** Se han creado `index.html` y `main.jsx` para inicializar la aplicación React correctamente.
-4.  **Verificación:** Se ha ejecutado el build localmente con éxito, generando la carpeta `dist`.
+### Funcionalidad de Backend (`functions/api/subscribe.js`)
+El endpoint `/api/subscribe` gestiona las solicitudes POST:
+1.  **Validación:** Verifica que el email sea válido.
+2.  **Rate Limiting:** Comprueba si la IP ha realizado más de 5 registros. Si es así, devuelve error 429.
+3.  **Inserción:** Intenta guardar el email. Si ya existe, devuelve éxito (para privacidad) pero no duplica.
 
-## Instrucciones de Despliegue (Cloudflare Pages)
-Para publicar este proyecto en Cloudflare Pages mediante GitHub:
+## Guía de Activación (Paso a Paso)
 
-1.  Subir este código a un repositorio de GitHub.
-2.  En Cloudflare Dashboard > Pages > Connect to Git.
-3.  Seleccionar el repositorio `fichax`.
-4.  Configurar los ajustes de compilación:
-    *   **Framework preset:** Vite (o None)
-    *   **Build command:** `npm run build`
-    *   **Build output directory:** `dist`
+Para que el formulario funcione en producción, debes realizar los siguientes pasos manuales en Cloudflare:
 
-## Tareas Pendientes / Futuras Mejoras
-*   **Funcionalidad del Formulario:** Actualmente, el formulario de "Acceso Anticipado" es una simulación visual.
-    *   *Acción requerida:* Integrar con un servicio de backend (Cloudflare Workers, Firebase, Supabase o un servicio de formularios como Formspree) para guardar los emails realmente.
-*   **Dashboard Real:** La sección de "Dashboard en construcción" es puramente visual.
-    *   *Acción requerida:* Desarrollar la lógica de autenticación y el panel de control real cuando el producto avance.
-*   **SEO y Metadatos:**
-    *   *Acción requerida:* Personalizar los metadatos en `index.html` (título, descripción, imagen og:image) para mejorar el compartir en redes sociales.
+1.  **Crear la Base de Datos:**
+    *   Ir al Dashboard de Cloudflare > Workers & Pages > D1.
+    *   Crear una nueva base de datos llamada `fichax-db`.
+    *   Copiar el **Database ID**.
+
+2.  **Configurar `wrangler.toml`:**
+    *   Editar el archivo `wrangler.toml` y reemplazar `PLACEHOLDER_DB_ID` con el ID real copiado en el paso anterior.
+
+3.  **Crear la Tabla:**
+    *   En el Dashboard de Cloudflare > D1 > `fichax-db` > Console.
+    *   Copiar y pegar el contenido del archivo `schema.sql` y ejecutarlo.
+    *   *Alternativa CLI:* `npx wrangler d1 execute fichax-db --file=./schema.sql` (requiere login local).
+
+4.  **Vincular en Cloudflare Pages (Producción):**
+    *   Ir al proyecto en Cloudflare Pages > Settings > Functions > D1 Database Bindings.
+    *   Variable name: `DB` (Debe ser exactamente este nombre).
+    *   D1 Database: Seleccionar `fichax-db`.
+    *   Guardar y desplegar de nuevo (o esperar al siguiente push).
 
 ## Comandos Útiles
 *   `npm run dev`: Inicia el servidor de desarrollo local.
-*   `npm run build`: Genera la versión de producción en la carpeta `dist`.
-*   `npm run preview`: Vista previa local de la versión de producción.
+*   `npm run build`: Genera la versión de producción.

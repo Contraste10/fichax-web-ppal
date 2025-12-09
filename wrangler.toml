@@ -1,0 +1,8 @@
+name = "fichax"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "fichax-db"
+database_id = "e53c38ca-4f83-47a4-a871-b5d5c3ce7f6f" # Se reemplazará con el ID real
