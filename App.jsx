@@ -117,25 +117,27 @@ const App = () => {
 
           <div className="mt-10 max-w-md mx-auto" id="waitlist">
             {!submitted ? (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  required
-                  placeholder="tu@email.com"
-                  className="flex-1 appearance-none rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-sm"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  disabled={isLoading}
-                  className="group inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isLoading ? 'Enviando...' : 'Notificarme'}
-                  {!isLoading && <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />}
-                </button>
-              </form>
-              {message && <p className="mt-2 text-sm text-red-500">{message}</p>}
+              <>
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="email"
+                    required
+                    placeholder="tu@email.com"
+                    className="flex-1 appearance-none rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-sm"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="group inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? 'Enviando...' : 'Notificarme'}
+                    {!isLoading && <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />}
+                  </button>
+                </form>
+                {message && <p className="mt-2 text-sm text-red-500">{message}</p>}
+              </>
             ) : (
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-center text-green-700 animate-fade-in">
                 <CheckCircle className="h-5 w-5 mr-2" />
