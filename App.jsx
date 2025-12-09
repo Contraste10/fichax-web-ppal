@@ -224,6 +224,91 @@ const App = () => {
         </div>
       </section>
 
+      
+      {/* Benefits Section (New) */}
+      <section id="benefits" className="py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+            <div className="mb-12 lg:mb-0">
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-6">
+                No es solo fichar,<br />
+                <span className="text-indigo-600">es optimizar tu empresa.</span>
+              </h2>
+              <p className="text-lg text-slate-600 mb-8">
+                fichaX transforma la tarea tediosa del control horario en una ventaja competitiva para tu departamento de recursos humanos.
+              </p>
+              
+              <div className="space-y-8">
+                <BenefitItem 
+                  icon={<Zap className="h-6 w-6 text-indigo-600" />}
+                  title="Ahorra un 80% de tiempo administrativo" 
+                  description="Olvídate de perseguir a los empleados para que firmen o de cuadrar Excels a fin de mes. Automatiza los recordatorios y cálculos."
+                />
+                <BenefitItem 
+                  icon={<TrendingUp className="h-6 w-6 text-indigo-600" />}
+                  title="Cero errores humanos" 
+                  description="Los cálculos automáticos eliminan los fallos en el recuento de horas extras, saldos de vacaciones y exportación de nóminas."
+                />
+                <BenefitItem 
+                  icon={<Heart className="h-6 w-6 text-indigo-600" />}
+                  title="Mejora el clima laboral" 
+                  description="La transparencia genera confianza. Cuando los empleados tienen acceso claro a sus horas y saldos, se reducen las consultas a RRHH."
+                />
+              </div>
+            </div>
+            
+            {/* Visual Benefits Representation */}
+            <div className="relative">
+              <div className="absolute top-0 right-0 -mr-12 -mt-12 w-64 h-64 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+              <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-violet-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+              
+              <div className="relative bg-white rounded-2xl shadow-xl border border-slate-100 p-8">
+                <div className="space-y-6">
+                  {/* Mockup: Time Saving Comparison */}
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-4">Tiempo dedicado a gestión mensual</h4>
+                    
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-slate-500">Gestión Tradicional / Excel</span>
+                          <span className="text-red-500 font-medium">15 horas</span>
+                        </div>
+                        <div className="w-full bg-slate-100 rounded-full h-2.5">
+                          <div className="bg-slate-400 h-2.5 rounded-full" style={{ width: '100%' }}></div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-indigo-600 font-medium">Con fichaX</span>
+                          <span className="text-emerald-500 font-bold">2 horas</span>
+                        </div>
+                        <div className="w-full bg-indigo-50 rounded-full h-2.5">
+                          <div className="bg-indigo-600 h-2.5 rounded-full" style={{ width: '13%' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-slate-100">
+                     <div className="flex items-start gap-4 p-4 bg-indigo-50/50 rounded-lg border border-indigo-100">
+                        <div className="bg-indigo-100 p-2 rounded-full shrink-0">
+                          <Users className="h-5 w-5 text-indigo-600" />
+                        </div>
+                        <div>
+                          <p className="text-indigo-900 text-sm font-medium italic">"Desde que usamos fichaX, el cierre de nóminas nos lleva una tarde en lugar de una semana entera."</p>
+                          <p className="text-indigo-600 text-xs mt-2 font-semibold">- Marta G., Directora de RRHH</p>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-slate-900 py-24 relative overflow-hidden">
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-indigo-600 rounded-full blur-3xl opacity-20"></div>
