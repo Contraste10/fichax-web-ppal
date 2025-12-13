@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fichaX | Registro digital de jornada, claro y trazable</title>
+    <meta name="description" content="Promoción 0€/trabajador hasta 2027*. Registro digital de jornada cumpliendo la legislación al 100%. Trazabilidad total, almacenado durante 4 años y sin complicaciones.">
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Marca -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            teal: '#134B5F', // Atlantic Teal
+                            coral: '#FF7E6B', // Vibrant Coral
+                            coralDark: '#E56250',
+                            offWhite: '#F8F9FA',
+                            slate: '#64748B',
+                            navy: '#0F172A'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(19, 75, 95, 0.08), 0 0 3px rgba(0,0,0,0.02)',
+                        'card': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos específicos */
+        .hero-bg {
+            background: linear-gradient(135deg, #F8F9FA 0%, #EBF4F6 100%);
+        }
+        
+        /* Animación del Logo (0.8s) */
+        .group:hover .check-stroke {
+            stroke-dasharray: 100;
+            animation: drawCheck 0.8s ease-out forwards;
+        }
+
+        @keyframes drawCheck {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Acordeón FAQ */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-navy bg-white antialiased">
+
+    <!-- BARRA SUPERIOR (PROMO) -->
+    <div class="bg-brand-navy text-white text-sm py-2 px-4 text-center font-medium">
+        <p>🎁 Promoción 0 € / trabajador hasta 2027<sup>*</sup> · Registro digital de jornada (inicio/fin) + 4 años de almacenamiento cumpliendo la legislación</p>
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logotipo -->
+                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform group-hover:scale-105 duration-500">
+                        <path d="M16 16 L48 48" stroke="#134B5F" stroke-width="10" stroke-linecap="round"/>
+                        <path class="check-stroke" d="M14 38 Q32 60 52 14" stroke="#FF7E6B" stroke-width="10" stroke-linecap="round"/>
+                    </svg>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-brand-teal">ficha<span class="text-brand-coral">X</span></span>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#solucion" class="text-brand-slate hover:text-brand-teal font-medium transition">Solución</a>
+                    <a href="#como-funciona" class="text-brand-slate hover:text-brand-teal font-medium transition">Cómo funciona</a>
+                    <a href="#precios" class="text-brand-slate hover:text-brand-teal font-medium transition">Precios</a>
+                    <a href="#faq" class="text-brand-slate hover:text-brand-teal font-medium transition">Ayuda</a>
+                </div>
+
+                <!-- CTA Nav -->
+                <div class="hidden md:flex">
+                    <a href="#registro" class="text-brand-teal font-bold hover:text-brand-coral transition px-4 py-2">
+                        Acceso clientes
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button (Icon only) -->
+                <div class="md:hidden text-brand-teal text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Above the fold) -->
+    <section class="hero-bg pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                
+                <!-- Columna Izquierda: Copy -->
+                <div class="lg:col-span-7 mb-12 lg:mb-0">
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-teal leading-tight mb-6">
+                        Registro de jornada digital <span class="text-brand-coral">claro y trazable</span>, desde 1 €/mes.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-brand-slate mb-8 max-w-2xl leading-relaxed">
+                        Fichaje de entrada/salida + pausar/reanudar para ver tiempo efectivo vs pausa. RR. HH. define horas de jornada y cada persona trabajadora accede a su historial cuando lo necesita.
+                    </p>
+
+                    <!-- Badges de Cumplimiento -->
+                    <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100 inline-block w-full max-w-2xl">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1"></i>
+                                <span class="text-sm font-medium text-brand-navy">Registro diario (inicio/fin)</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1"></i>
+                                <span class="text-sm font-medium text-brand-navy">Conservación 4 años</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1"></i>
+                                <span class="text-sm font-medium text-brand-navy">Acceso historial trabajador</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-teal mt-1"></i>
+                                <span class="text-sm font-medium text-brand-navy">Listo para Inspección</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bullets -->
+                    <ul class="mt-8 space-y-3">
+                        <li class="flex items-center gap-3 text-brand-slate">
+                            <span class="w-6 h-6 rounded-full bg-brand-coral/20 text-brand-coral flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                            Menos Excel, menos papel y menos discusiones: el tiempo queda ordenado.
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-slate">
+                            <span class="w-6 h-6 rounded-full bg-brand-coral/20 text-brand-coral flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                            Trazabilidad total: registros protegidos con notas/incidencias.
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-slate">
+                            <span class="w-6 h-6 rounded-full bg-brand-coral/20 text-brand-coral flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                            RR. HH. gestiona reglas; el equipo ficha en web/PWA.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna Derecha: Formulario -->
+                <div class="lg:col-span-5" id="registro">
+                    <div class="bg-white rounded-3xl shadow-card p-8 border border-gray-100 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-2 bg-brand-coral"></div>
+                        <h3 class="font-heading text-2xl font-bold text-brand-teal mb-2">Empieza gratis</h3>
+                        <p class="text-brand-slate text-sm mb-6">Arranque real en tu empresa. Te ayudamos a configurar jornada y permisos.</p>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-navy uppercase tracking-wider mb-1">Empresa</label>
+                                <input type="text" placeholder="Nombre de tu empresa" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 outline-none transition bg-brand-offWhite">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-navy uppercase tracking-wider mb-1">Responsable</label>
+                                <input type="text" placeholder="Nombre y Apellido" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 outline-none transition bg-brand-offWhite">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-navy uppercase tracking-wider mb-1">Contacto</label>
+                                <input type="text" placeholder="Email o teléfono" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 outline-none transition bg-brand-offWhite">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-navy uppercase tracking-wider mb-1">Equipo</label>
+                                <input type="number" placeholder="Nº trabajadores (aprox.)" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 outline-none transition bg-brand-offWhite">
+                                <span class="text-xs text-brand-slate mt-1 block">Puede ser un número aproximado.</span>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-coral hover:bg-brand-coralDark text-white font-heading font-bold text-lg py-4 rounded-xl shadow-lg shadow-brand-coral/30 transition transform hover:-translate-y-1">
+                                Activar ahora por 0 € hasta 2027*
+                            </button>
+                        </form>
+                        
+                        <div class="mt-6 text-center">
+                            <a href="#" class="text-sm font-medium text-brand-teal hover:underline decoration-2 underline-offset-2">Pregúntanos por módulos y packs (desde 2 €)</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading text-3xl font-bold text-brand-navy mb-12">Si el registro no es sólido, aparecen las fricciones.</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 bg-brand-offWhite rounded-3xl">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-brand-coral text-2xl">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-brand-teal">Pausas confusas</h3>
+                    <p class="text-brand-slate">Generan roces innecesarios por "minutos" mal contados.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-8 bg-brand-offWhite rounded-3xl">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-brand-coral text-2xl">
+                        <i class="fa-solid fa-eraser"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-brand-teal">Olvidos</h3>
+                    <p class="text-brand-slate">Obligan a una reconstrucción manual del pasado que consume tiempo.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-8 bg-brand-offWhite rounded-3xl">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-brand-coral text-2xl">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-brand-teal">Datos dispersos</h3>
+                    <p class="text-brand-slate">Crean dudas difíciles de defender ante una inspección.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUCIÓN: CUMPLIMIENTO SIN DOLOR -->
+    <section id="solucion" class="py-20 bg-brand-navy text-white mt-[-2rem] relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-brand-coral font-bold tracking-wider text-sm mb-2 block">Solución fichaX</span>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 leading-snug">
+                        Cumplir con el registro digital de jornada no debería ser complicado.
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-8">
+                        fichaX.es está diseñada para cubrir los requisitos clave del registro de jornada: inicio/fin, conservación 4 años y disponibilidad para las partes legitimadas.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center flex-shrink-0 border border-brand-teal/50">
+                                <i class="fa-solid fa-user-check text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Autonomía</h4>
+                                <p class="text-gray-400 text-sm">El trabajador encuentra su historial sin pedirlo "por favor".</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center flex-shrink-0 border border-brand-teal/50">
+                                <i class="fa-solid fa-file-pen text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Gestión de incidencias</h4>
+                                <p class="text-gray-400 text-sm">RR. HH. revisa incidencias y deja nota (sin reescribir el pasado).</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center flex-shrink-0 border border-brand-teal/50">
+                                <i class="fa-solid fa-file-export text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Tranquilidad legal</h4>
+                                <p class="text-gray-400 text-sm">Informes listos para revisión interna o requerimientos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 lg:mt-0 relative">
+                    <!-- Visual Abstracto de Lista Limpia -->
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 transform rotate-2 hover:rotate-0 transition duration-500">
+                        <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                            <div class="flex gap-3 items-center">
+                                <div class="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center font-bold">L</div>
+                                <div>
+                                    <div class="text-sm font-bold">Laura García</div>
+                                    <div class="text-xs text-gray-400">Diseño Producto</div>
+                                </div>
+                            </div>
+                            <div class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs font-bold">Jornada Completada</div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center bg-brand-navy/50 p-4 rounded-xl border border-white/5">
+                                <span class="text-sm text-gray-300"><i class="fa-solid fa-right-to-bracket mr-2 text-brand-coral"></i>Entrada</span>
+                                <span class="font-mono font-bold">09:00</span>
+                            </div>
+                             <div class="flex justify-between items-center bg-brand-navy/50 p-4 rounded-xl border border-white/5 opacity-75">
+                                <span class="text-sm text-gray-300"><i class="fa-solid fa-pause mr-2 text-yellow-500"></i>Pausa Café</span>
+                                <span class="font-mono font-bold">11:00 - 11:15</span>
+                            </div>
+                             <div class="flex justify-between items-center bg-brand-navy/50 p-4 rounded-xl border border-white/5">
+                                <span class="text-sm text-gray-300"><i class="fa-solid fa-right-from-bracket mr-2 text-brand-coral transform rotate-180"></i>Salida</span>
+                                <span class="font-mono font-bold">17:00</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center text-xs text-gray-500">Vista del historial del trabajador</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section id="como-funciona" class="py-20 bg-brand-offWhite">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <!-- Se añade [font-variant-ligatures:none] para arreglar el punto de la 'i' -->
+                <h2 class="font-heading text-3xl font-bold text-brand-teal [font-variant-ligatures:none]">Así funciona fichaX Esencial</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Paso 1: Convertido a Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+                    <span class="absolute -right-0 -top-2 text-9xl font-heading font-bold text-gray-100/80 group-hover:text-brand-coral/25 transition-colors -z-0 select-none">1</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-brand-offWhite flex items-center justify-center text-brand-teal mb-6">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl mb-3 text-brand-navy [font-variant-ligatures:none]">Configura</h3>
+                        <p class="text-brand-slate text-sm leading-relaxed">Define tu empresa, las horas de jornada laboral (Lunes a Viernes) y los roles de tus empleados.</p>
+                    </div>
+                </div>
+                
+                 <!-- Paso 2: Convertido a Card -->
+                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+                    <span class="absolute -right-0 -top-2 text-9xl font-heading font-bold text-gray-100/80 group-hover:text-brand-coral/25 transition-colors -z-0 select-none">2</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-brand-offWhite flex items-center justify-center text-brand-teal mb-6">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl mb-3 text-brand-navy [font-variant-ligatures:none]">El equipo ficha</h3>
+                        <p class="text-brand-slate text-sm leading-relaxed">Desde el móvil, tablet o el ordenador, registran entradas, salidas y sus pausas sin fricción.</p>
+                    </div>
+                </div>
+                
+                 <!-- Paso 3: Convertido a Card -->
+                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-soft transition-shadow duration-300">
+                    <span class="absolute -right-0 -top-2 text-9xl font-heading font-bold text-gray-100/80 group-hover:text-brand-coral/25 transition-colors -z-0 select-none">3</span>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-brand-offWhite flex items-center justify-center text-brand-teal mb-6">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl mb-3 text-brand-navy [font-variant-ligatures:none]">Gestiona</h3>
+                        <p class="text-brand-slate text-sm leading-relaxed">RR. HH. revisa posibles incidencias, añade notas aclaratorias y exporta informes listos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="precios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <!-- Plan Esencial -->
+                <div class="bg-brand-teal rounded-3xl p-8 text-white relative shadow-xl transform md:scale-105 z-10">
+                    <div class="absolute top-4 right-4 bg-brand-coral text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Promo a 0 € hasta 2027<sup>*</sup></div>
+                    <h3 class="font-heading text-2xl font-bold mb-2">Esencial</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold">1 €</span>
+                        <span class="text-sm opacity-80">/ trabajador / mes</span>
+                    </div>
+                    <p class="text-sm opacity-90 mb-8 border-b border-white/20 pb-6">
+                        Todo lo necesario para cumplir la ley sin complicaciones.   
+                    </p>
+                    <ul class="space-y-3 mb-8 text-sm font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-coral"></i> Control horario L–V</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-coral"></i> Gestión de pausas</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-coral"></i> Trazabilidad y gestión de incidencias</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-coral"></i> Registros accesibles para trabajadores y RR. HH.</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-coral"></i> Historial 4 años</li>
+                    </ul>
+                    <a href="#registro" class="block w-full bg-white text-brand-teal font-bold text-center py-3 rounded-xl hover:bg-gray-50 transition">
+                        Empezar ahora la promo 0 € hasta 2027<sup>*</sup>
+                    </a>
+                </div>
+
+                <!-- Plan Módulos -->
+                <div class="bg-white border border-gray-200 rounded-3xl p-8 text-brand-navy shadow-soft flex flex-col justify-center">
+                    <h3 class="font-heading text-2xl font-bold mb-2">Con Módulos</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-sm font-bold text-brand-slate">desde</span>
+                        <span class="text-4xl font-bold text-brand-navy">2 €</span>
+                        <span class="text-sm text-brand-slate">/ trabajador / mes</span>
+                    </div>
+                    <p class="text-sm text-brand-slate mb-8 border-b border-gray-100 pb-6">
+                        Añade funcionalidades extra según las necesidades de tu empresa.
+                    </p>
+                    <ul class="space-y-3 mb-8 text-sm text-brand-slate">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-plus text-brand-teal"></i> Todo lo del Esencial</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-plus text-brand-teal"></i> Módulos a medida</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-plus text-brand-teal"></i> Activación nivel empresa</li>
+                    </ul>
+                    <a href="#registro" class="block w-full bg-brand-offWhite text-brand-navy font-bold text-center py-3 rounded-xl hover:bg-gray-100 transition border border-gray-200">
+                        ¿Hablamos?
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (ACORDEÓN) -->
+    <section id="faq" class="py-20 bg-brand-offWhite">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl font-bold text-brand-teal text-center mb-12">Preguntas Frecuentes</h2>
+            
+            <div class="space-y-4">
+                <!-- Item 1 -->
+                <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿Qué exige la normativa del registro de jornada?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        Registro digital diario con hora de inicio y fin, conservación de registros durante 4 años, y que estén a disposición de trabajadores, representantes e Inspección.
+                    </div>
+                </details>
+
+                <!-- Item 2 -->
+                <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿Durante cuánto tiempo se guardan los registros?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        Al menos 4 años, conforme a la obligación legal.
+                    </div>
+                </details>
+
+                <!-- Item 3 -->
+                <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿El trabajador puede acceder a su historial?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        Sí, cada persona trabajadora accede a su historial (y RR. HH. gestiona permisos y control).
+                    </div>
+                </details>
+
+                <!-- Item 4 -->
+                <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿Se pueden alterar los fichajes?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        No se “edita” el registro: se gestionan correcciones mediante notas/incidencias para mantener la trazabilidad total del dato original.
+                    </div>
+                </details>
+
+                <!-- Item 5 -->
+                <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿Hace falta consentimiento para registrar jornada?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        En general, no: la base es la obligación legal del registro (art. 34.9 ET).
+                    </div>
+                </details>
+
+                <!-- Item 6 -->
+                <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿Dónde se aloja la información?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        En servidores dentro de la UE/España, que cumplen todos los estándares de seguridad, privacidad y copia de seguridad (Modelo SaaS), y están sujetos a la normativa de protección de datos personales (RGPD).
+                    </div>
+                </details>
+
+                 <!-- Item 7 -->
+                 <details class="group bg-white rounded-2xl p-6 cursor-pointer shadow-sm border border-gray-100">
+                    <summary class="flex justify-between items-center font-bold text-brand-navy text-lg">
+                        ¿Usáis biometría (huella/rostro)?
+                        <span class="transition group-open:rotate-180 text-brand-teal"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="mt-4 text-brand-slate leading-relaxed">
+                        No. La AEPD considera que para usar biometría en registro de jornada haría falta una legislación específica (que no existe) y, además, añade que el consentimiento no sirve en el ámbito laboral por desequilibrio.
+                        Por ello está prohibido usar biometría en el registro de jornada, y la AEPD ya ha impuesto sanciones de varios miles de euros con este motivo.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-24 bg-brand-navy text-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="font-heading text-4xl lg:text-5xl font-bold mb-8">Registro claro, equipo tranquilo.</h2>
+            <a href="#registro" class="inline-block bg-brand-coral hover:bg-brand-coralDark text-white font-heading font-bold text-xl px-10 py-5 rounded-2xl shadow-lg hover:shadow-brand-coral/40 transition transform hover:-translate-y-1">
+                Activar ahora por 0 € hasta 2027*
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                     <div class="flex items-center gap-2 mb-4">
+                        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+                            <path d="M16 16 L48 48" stroke="#134B5F" stroke-width="10" stroke-linecap="round"/>
+                            <path d="M14 38 Q32 60 52 14" stroke="#FF7E6B" stroke-width="10" stroke-linecap="round"/>
+                        </svg>
+                        <span class="font-heading font-bold text-xl text-brand-teal [font-variant-ligatures:none]">ficha<span class="text-brand-coral">X</span></span>
+                    </div>
+                    <p class="text-brand-slate text-sm max-w-xs">
+                        Tecnología que humaniza el tiempo. Diseñada con sentidiño para pequeñas y medianas empresas, y microempresas, porque cada una tiene sus necesidades.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-brand-navy mb-4">Producto</h4>
+                    <ul class="space-y-2 text-sm text-brand-slate">
+                        <li><a href="#" class="hover:text-brand-teal">Esencial</a></li>
+                        <li><a href="#" class="hover:text-brand-teal">Módulos</a></li>
+                        <li><a href="#" class="hover:text-brand-teal">App Móvil</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-brand-navy mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-brand-slate">
+                        <li><a href="#" class="hover:text-brand-teal">Aviso Legal</a></li>
+                        <li><a href="#" class="hover:text-brand-teal">Privacidad</a></li>
+                        <li><a href="#" class="hover:text-brand-teal">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 text-xs text-gray-500">
+                <p class="mb-4">
+                    * Promoción 0 € / trabajador válida del 1/1/2026 al 31/12/2026 para el servicio Esencial sin módulos (control horario L–V). El compromiso del servicio en promoción se mantendrá para el Esencial salvo causa de fuerza mayor.
+                </p>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p>Información general, no constituye asesoría legal.</p>
+                    <p>&copy; 2025 fichaX. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
